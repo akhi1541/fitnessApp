@@ -1,0 +1,31 @@
+{
+  "name": "fitnessapp",
+  "version": "1.0.0",
+  "description": "App for diet plans",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akhi1541/fitnessApp.git"
+  },
+  "author": "akhil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akhi1541/fitnessApp/issues"
+  },
+  "homepage": "https://github.com/akhi1541/fitnessApp#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.3",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.0",
+    "validator": "^13.11.0"
+  }
+}
