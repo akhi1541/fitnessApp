@@ -2,6 +2,9 @@ const Users = require("../model/userModel");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const crypto = require("crypto");
+const oAuthLogin = false;
+
+
 
 const loginTo = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECURITY_KEY, {
@@ -39,6 +42,7 @@ exports.signUpController = async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm,
     passwordModifiedAt: req.body.passwordModifiedAt,
     role: req.body.role,
+    
   });
   createSendToken(newUser, 200, "user created sucesfully", res);
 };

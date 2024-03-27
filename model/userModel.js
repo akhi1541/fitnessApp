@@ -29,22 +29,49 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: {
     type: Date,
   },
+  isOAuth: {
+    type: Boolean,
+    default: false,
+  },
   password: {
     type: String,
-    required: [true, "Password is required"],
+    validate: {
+      validator: function (value) {
+        // Only validate if isOAuth is false and password is provided
+        return !this.isOAuth && value && value.length >= 5;
+      },
+      message: "Password is required and must be at least 5 characters long.",
+    },
     min: [5, "required minimum 5 characters"],
     select: false,
   },
 
   passwordConfirm: {
     type: String,
-    required: [true, "Password is required"],
+    validate: {
+      validator: function (value) {
+        // Only validate if isOAuth is false and password is provided
+        return (
+          !this.isOAuth && value && value.length >= 5 && value === this.password
+        );
+      },
+      message:
+        value && value.length >= 5
+          ? "Password is required and must be at least 5 characters long."
+          : "Confirm password must be same as password",
+    },
     validate: {
       validator: function (el) {
-        return el === this.password;
+        return;
       },
       message: "Confirm password must be same as password",
     },
+  },
+  validate: {
+    validator: function (el) {
+      return el === this.password;
+    },
+    message: "Confirm password must be same as password",
   },
   passwordModifiedAt: {
     type: Date,
